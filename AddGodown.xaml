@@ -1,0 +1,84 @@
+﻿<Window x:Class="CRMInventory.AddGodown"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRMInventory.ViewModel"
+        mc:Ignorable="d"
+        Title="AddGodown" Height="210" Width="520" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Window.DataContext >
+        <local:UnitViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel>
+                            <Border BorderBrush="red" BorderThickness="1">
+                                <AdornedElementPlaceholder/>
+                            </Border>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True" >
+                    <Setter Property="ToolTip" 
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Width="500" Height="170" Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="50" />
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black"  Background="LightSkyBlue" BorderThickness="1,1,1,0">
+            <TextBlock FontSize="16" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Foreground="Black"  
+                Text="Godown Creation" Height="20" VerticalAlignment="Center" TextAlignment="Center" />
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="1" Grid.Column="0" Background="AliceBlue">
+            <Grid Width="500" Height="110">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150*"/>
+                    <ColumnDefinition Width="350*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="35" />
+                    <RowDefinition  Height="35" />
+                    <RowDefinition  Height="35" />
+                </Grid.RowDefinitions>
+                <TextBox   x:Name="GodownId" Visibility="Hidden" />
+                <Label Grid.Row="0" Grid.Column="0" Content="Godown Name :" FontWeight="Bold"/>
+                <TextBox Grid.Row="0" Grid.Column="1"  x:Name="GodownName" Height="25" Margin="3,3,10,3"
+                         Text="{Binding GodownName,
+                ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="GodownName_KeyDown"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Address :" FontWeight="Bold"/>
+                <TextBox Grid.Row="1" Grid.Column="1"  x:Name="Address" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding Address,
+                ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="Address_KeyDown"/>
+                <Grid Width="500" Height="80" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="35" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Grid.Column="1" Width="70">
+                        <Button  x:Name="btnSave" Click="Button_Click_Save" >Save</Button>
+                        <Button x:Name="btnModify" Click="Button_Click_Modify" Visibility="Hidden">Update</Button>
+                    </Grid>
+                    <Button Width="70" Click="Button_Click_Clear" Grid.Row="1" Grid.Column="2">Clear</Button>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

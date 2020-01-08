@@ -1,0 +1,187 @@
+﻿<Window x:Class="CRMInventory.AddCompany"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRMInventory"
+        mc:Ignorable="d"
+        Title="AddCompany" Height="630" Width="520" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--<RowDefinition Height="25"/>-->
+            <RowDefinition Height="615"/>
+        </Grid.RowDefinitions>
+        <!--<DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <Button Width="70" Click="Button_Click_Save">Save</Button>
+                <Button Width="70" Click="Button_Click_Clear">Clear</Button>
+            </Menu>
+        </DockPanel>-->
+        <Grid Width="500" Height="600" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="50" />
+                <RowDefinition Height="550"/>
+                <RowDefinition  Height="25*" />
+            </Grid.RowDefinitions>
+            <Border BorderBrush="Black"  Background="LightSkyBlue" BorderThickness="1,1,1,0">
+                <TextBlock FontSize="16" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Foreground="Black"  
+                Text="Company Creation" Height="20" VerticalAlignment="Center" TextAlignment="Center" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="1" Grid.Column="0" Background="AliceBlue">
+                <Grid Width="500" Height="550">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="400*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35"/>
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35"/>
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35"/>
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35"/>
+                        <RowDefinition  Height="35"/>
+                        <RowDefinition  Height="35"/>
+                        <RowDefinition  Height="190"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Name :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="0" Grid.Column="1"  x:Name="Name" Height="25" Margin="3,3,10,3"  KeyDown="Name_KeyDown"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Address :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="1" Grid.Column="1"  x:Name="Address" Height="25" Margin="3,3,10,3" KeyDown="Address_KeyDown"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="City :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="2" Grid.Column="1"  x:Name="City" Height="25" Margin="3,3,10,3" KeyDown="City_KeyDown"/>
+
+                    <Label Grid.Row="3" Grid.Column="0" Content="State :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="3" Grid.Column="1"  x:Name="State" Height="25" Margin="3,3,10,3" KeyDown="State_KeyDown"/>
+
+                    <Label Grid.Row="4" Grid.Column="0" Content="PIN No :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="4" Grid.Column="1"  x:Name="PINNo" Height="25" Margin="3,3,10,3" KeyDown="PINNo_KeyDown"/>
+
+                    <Label Grid.Row="5" Grid.Column="0" Content="Phone :" FontWeight="Bold" />
+                    <Grid Grid.Row="5" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Row="0" Grid.Column="0"  x:Name="Phone1" Height="25" Margin="3,3,10,3" KeyDown="Phone1_KeyDown"/>
+                        <TextBox Grid.Row="0" Grid.Column="1"  x:Name="Phone2" Height="25" Margin="3,3,10,3" KeyDown="Phone2_KeyDown"/>
+                    </Grid>
+
+                    <Label Grid.Row="6" Grid.Column="0" Content="Mobile :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="6" Grid.Column="1"  x:Name="Mobile" Height="25" Margin="3,3,10,3" KeyDown="Mobile_KeyDown"/>
+
+                    <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="35*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="Website :" FontWeight="Bold"/>
+                        <TextBox Grid.Row="0" Grid.Column="1"  x:Name="Website" Height="25" Margin="3,3,10,3" KeyDown="Website_KeyDown"/>
+
+                        <Label Grid.Row="0" Grid.Column="2" Content="Email ID :" FontWeight="Bold"/>
+                        <TextBox Grid.Row="0" Grid.Column="3"  x:Name="EmailID" Height="25" Margin="0,3,10,0" KeyDown="EmailID_KeyDown"/>
+                    </Grid>
+
+                    <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="125"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="35*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0">
+                            <TextBlock TextWrapping="Wrap" Text="Registration Type :" FontWeight="Bold"/>
+                        </Label>
+                        <TextBox Grid.Row="0" Grid.Column="1"  x:Name="RegistrationType" Height="25" Margin="0,3,10,3" KeyDown="RegistrationType_KeyDown"/>
+
+                        <Label Grid.Row="0" Grid.Column="2">
+                            <TextBlock TextWrapping="Wrap" Text="Type of Business :" FontWeight="Bold"/>
+                        </Label>
+                        <TextBox Grid.Row="0" Grid.Column="3"  x:Name="TypeofBusiness" Height="25" Margin="3,3,10,3" KeyDown="TypeofBusiness_KeyDown"/>
+                    </Grid>
+
+                    <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="35*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0">
+                            <TextBlock TextWrapping="Wrap" Text="Financial Year Start From :" FontWeight="Bold"/>
+                        </Label>
+                        <DatePicker Grid.Row="0" Grid.Column="1"  x:Name="Financialyear" Height="25" Margin="3,3,10,3" KeyDown="Financialyear_KeyDown"/>
+                    </Grid>
+
+                    <Border BorderBrush="Black" BorderThickness="1,1,1,1"  Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,5,5,5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition  Height="35" />
+                                <RowDefinition  Height="35"/>
+                                <RowDefinition  Height="35" />
+                                <RowDefinition  Height="35"/>
+                                <RowDefinition  Height="35" />
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Content="C.S.T. No. :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="0" Grid.Column="1"  x:Name="CSTNO" Height="25" Margin="3,3,10,3" KeyDown="CSTNO_KeyDown"/>
+
+                            <Label Grid.Row="0" Grid.Column="2" Content="Date From :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="0" Grid.Column="3"  x:Name="CSTDateFrom" Height="25" Margin="3,3,10,3" KeyDown="CSTDateFrom_KeyDown"/>
+
+                            <Label Grid.Row="1" Grid.Column="0" Content="TIN No. :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="1" Grid.Column="1"  x:Name="TINNo" Height="25" Margin="3,3,10,3" KeyDown="TINNo_KeyDown"/>
+
+                            <Label Grid.Row="1" Grid.Column="2" Content="Date From :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="1" Grid.Column="3"  x:Name="TINDateFrom" Height="25" Margin="3,3,10,3" KeyDown="TINDateFrom_KeyDown"/>
+
+                            <Label Grid.Row="2" Grid.Column="0" Content="GSTIN No. :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="2" Grid.Column="1"  x:Name="GSTINNo" Height="25" Margin="3,3,10,3" KeyDown="GSTINNo_KeyDown"/>
+
+                            <Label Grid.Row="2" Grid.Column="2" Content="Date From :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="2" Grid.Column="3"  x:Name="GSTINDateFrom" Height="25" Margin="3,3,10,3" KeyDown="GSTINDateFrom_KeyDown"/>
+
+                            <Label Grid.Row="3" Grid.Column="0" Content="D.L. No. :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="3" Grid.Column="1"  x:Name="DLNo" Height="25" Margin="3,3,10,3" KeyDown="DLNo_KeyDown"/>
+
+                            <Label Grid.Row="3" Grid.Column="2" Content="F.L. No. :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="3" Grid.Column="3"  x:Name="FLNO" Height="25" Margin="3,3,10,3" KeyDown="FLNO_KeyDown"/>
+
+                            <Label Grid.Row="4" Grid.Column="0" Content="TAN No. :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="4" Grid.Column="1"  x:Name="TANNo" Height="25" Margin="3,3,10,3" KeyDown="TANNo_KeyDown"/>
+
+                            <Label Grid.Row="4" Grid.Column="2" Content="PAN No. :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="4" Grid.Column="3"  x:Name="PANNo" Height="25" Margin="3,3,10,3" KeyDown="PANNo_KeyDown"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

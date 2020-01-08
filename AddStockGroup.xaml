@@ -1,0 +1,79 @@
+﻿<Window x:Class="CRMInventory.AddStockGroup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRMInventory.ViewModel"
+        mc:Ignorable="d"
+        Title="AddStockGroup" Height="220" Width="520" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Window.DataContext >
+        <local:StockGroupViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel>
+                            <Border BorderBrush="red" BorderThickness="1">
+                                <AdornedElementPlaceholder/>
+                            </Border>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True" >
+                    <Setter Property="ToolTip" 
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Width="500" Height="170" Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="50" />
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black"  Background="LightSkyBlue" BorderThickness="1,1,1,0">
+            <TextBlock FontSize="16" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Foreground="Black"  
+                Text="Stock Group Creation" Height="20" VerticalAlignment="Center" TextAlignment="Center" />
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="1" Grid.Column="0" Background="AliceBlue">
+            <Grid Width="500" Height="80">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="350"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="35" />
+                    <RowDefinition  Height="35" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Stock Group Name :" FontWeight="Bold"/>
+                <TextBox   x:Name="StockGroupId" Visibility="Hidden" />
+                <TextBox Grid.Row="0" Grid.Column="1"  x:Name="StockGroupName" Height="25" Margin="3,3,10,3" 
+                    Text="{Binding StockGroupName,
+                ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="StockGroupName_KeyDown"/>
+                <Grid Width="500" Height="80" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="35" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Grid.Column="1" Width="70">
+                        <Button  x:Name="btnSave" Click="Button_Click_Save" >Save</Button>
+                        <Button x:Name="btnModify" Click="Button_Click_Modify" Visibility="Hidden">Update</Button>
+                    </Grid>
+                    <Button Width="70" Click="Button_Click_Clear" Grid.Row="1" Grid.Column="2">Clear</Button>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

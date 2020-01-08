@@ -1,0 +1,157 @@
+﻿<Window x:Class="CRMInventory.AddLedger"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRMInventory.ViewModel"
+        mc:Ignorable="d"
+        Title="AddLedger" Height="570" Width="820" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Window.DataContext >
+        <local:LedgerViewModel/>
+    </Window.DataContext>
+    <Grid Width="800" Height="570" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="50"/>
+            <RowDefinition Height="520"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black"  Background="LightSkyBlue" BorderThickness="1,1,1,0">
+            <TextBlock FontSize="16" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Foreground="Black"  
+                Text="Ledger Creation" Height="20" VerticalAlignment="Center" TextAlignment="Center" />
+        </Border>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="140" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Ledger Name :" FontWeight="Bold"/>
+                <TextBox Grid.Row="0" Grid.Column="1"  x:Name="LedgerName"  Margin="3,3,10,3" KeyDown="LedgerName_KeyDown"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Under Name :" FontWeight="Bold"/>
+                <!--<TextBox Grid.Row="1" Grid.Column="1"  x:Name="UnderName"  Margin="3,3,10,3" KeyDown="UnderName_KeyDown"/>-->
+
+                <ComboBox Grid.Row="1" Grid.Column="1"  x:Name="UnderName"
+                              ItemsSource="{Binding underCollection,ValidatesOnExceptions=true, 
+                        UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="UnderName" SelectedValuePath="UnderId" Width="287"
+                              Height="27" KeyDown="UnderName_KeyDown" Margin="3,3,10,3"
+                              IsSynchronizedWithCurrentItem="True" IsEditable="True">
+                    <ComboBox.Style>
+                        <Style>
+                            <EventSetter Event="TextBox.TextChanged" Handler="TextBox_TextChanged" />
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
+                <Label Grid.Row="2" Grid.Column="0" Content="Billing Style :" FontWeight="Bold"/>
+                <TextBox Grid.Row="2" Grid.Column="1"  x:Name="BillingStyle"  Margin="3,3,10,3" KeyDown="BillingStyle_KeyDown"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Opening Balance :" FontWeight="Bold"/>
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" x:Name="OpeningBalance"  Margin="3,3,10,3" KeyDown="OpeningBalance_KeyDown"/>
+                    <ComboBox Grid.Column="1" x:Name="CreditDebitType" Margin="3,3,10,3" KeyDown="CreditDebitType_KeyDown"
+                            ItemsSource="{Binding creditDebitTypeCollection,ValidatesOnExceptions=true, 
+                        UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="name" SelectedValuePath="id"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="400"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock FontSize="14" Background="LightSkyBlue" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Black"  
+                Text="Personal Details" Height="25"  TextAlignment="Center" />
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Print Name :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="0" Grid.Column="1"  x:Name="PrintName"  Margin="3,3,10,3" KeyDown="PrintName_KeyDown"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Owner Name :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="1" Grid.Column="1"  x:Name="OwnerName"  Margin="3,3,10,3" KeyDown="OwnerName_KeyDown"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Address :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="2" Grid.Column="1"  x:Name="Address"  Margin="3,3,10,3" KeyDown="Address_KeyDown"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="State :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="3" Grid.Column="1"  x:Name="State"  Margin="3,3,10,3" KeyDown="State_KeyDown"/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Pin Code :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="4" Grid.Column="1"  x:Name="PinCode"  Margin="3,3,10,3" KeyDown="PinCode_KeyDown"/>
+                    <Label Grid.Row="5" Grid.Column="0" Content="Mobile :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="5" Grid.Column="1"  x:Name="Mobile"  Margin="3,3,10,3" KeyDown="Mobile_KeyDown"/>
+                    <Label Grid.Row="6" Grid.Column="0" Content="Aadhar No :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="6" Grid.Column="1"  x:Name="AadharNo"  Margin="3,3,10,3" KeyDown="AadharNo_KeyDown"/>
+                    <Label Grid.Row="7" Grid.Column="0" Content="Email ID :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="7" Grid.Column="1"  x:Name="EmailID"  Margin="3,3,10,3" KeyDown="EmailID_KeyDown"/>
+                    <Label Grid.Row="8" Grid.Column="0" Content="Area :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="8" Grid.Column="1"  x:Name="Area"  Margin="3,3,10,3" KeyDown="Area_KeyDown"/>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Agent :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="0" Grid.Column="1"  x:Name="Agent"  Margin="3,3,10,3" KeyDown="Agent_KeyDown"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Interest :" FontWeight="Bold"/>
+                    <!--<TextBox   x:Name="Interest"  Margin="3,3,10,3" KeyDown="Interest_KeyDown"/>-->
+                    <ComboBox Grid.Row="1" Grid.Column="1" x:Name="Interest" Margin="3,3,10,3" KeyDown="Interest_KeyDown"
+                            ItemsSource="{Binding interestCollection,ValidatesOnExceptions=true, 
+                        UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="name" SelectedValuePath="id"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Credit Period :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="2" Grid.Column="1"  x:Name="CreditPeriod"  Margin="3,3,10,3" KeyDown="CreditPeriod_KeyDown"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="LessPeriod :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="3" Grid.Column="1"  x:Name="LessPeriod"  Margin="3,3,10,3" KeyDown="LessPeriod_KeyDown"/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Interest Rate :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="4" Grid.Column="1"  x:Name="InterestRate"  Margin="3,3,10,3" KeyDown="InterestRate_KeyDown"/>
+                    <Label Grid.Row="5" Grid.Column="0" Content="Description :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="5" Grid.Column="1"  x:Name="Description"  Margin="3,3,10,3" KeyDown="Description_KeyDown"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        </Grid>
+</Window>

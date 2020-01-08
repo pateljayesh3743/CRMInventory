@@ -1,0 +1,73 @@
+﻿<Window x:Class="CRMInventory.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRMInventory"
+        mc:Ignorable="d"
+        Title="CRMInventory" Height="600" Width="500" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="675"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top" >
+                <MenuItem Header="Company Info" FontWeight="Bold">
+                    <MenuItem Header="Company" >
+                        <MenuItem Header="Display  F1" Click="company_List_Click"/>
+                        <MenuItem Header="Create" Click="company_Create_Click"/>
+                        </MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="InvetoryInfo" Header="Invetory Info" IsEnabled="True" x:FieldModifier="public" FontWeight="Bold">
+                    <MenuItem Header="Stock Group" >
+                        <MenuItem Header="Display" Click="stockgroup_List_Click"/>
+                        <MenuItem Header="Create" Click="stockgroup_Create_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Unit of Measurment" >
+                        <MenuItem Header="Display" Click="unit_List_Click"/>
+                        <MenuItem Header="Create" Click="unit_Create_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Godown" >
+                        <MenuItem Header="Display" Click="godown_List_Click"/>
+                        <MenuItem Header="Create" Click="godown_Create_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Stock Item" >
+                        <MenuItem Header="Display" Click="StockItem_List_Click"/>
+                        <MenuItem Header="Create" Click="StockItem_Create_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Stock Manage" >
+                        <MenuItem Header="Display" Click="Stock_List_Click"/>
+                        <MenuItem Header="Create" Click="Stock_Create_Click"/>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="AccountInfo" Header="Account Info" IsEnabled="true" FontWeight="Bold">
+                    <MenuItem Header="Under" >
+                        <MenuItem Header="Display" Click="Under_List_Click"/>
+                        <MenuItem Header="Create" Click="Under_Create_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Ledger" Click="Ledger_Create_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="TransactionInfo" Header="Transaction" IsEnabled="True" FontWeight="Bold">
+                    <MenuItem Header="Receipt" Click="Receipt_Click"/>
+                    <MenuItem Header="Stock Journal" >
+                        <MenuItem Header="Sale Invoice" Click="SaleInvoice_Create_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Purchase" >
+                        <MenuItem Header="Purchase" Click="Purchase_Create_Click"/>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="Display" Header="Display" IsEnabled="False" FontWeight="Bold">
+                </MenuItem>
+                <MenuItem Header="Help" FontWeight="Bold">
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <Frame x:Name="Main"  Grid.Row="1" >
+            <Frame.Background>
+                    <ImageBrush  ImageSource="./Content/inventory image.png" Stretch="UniformToFill" />
+            </Frame.Background>
+        </Frame>
+    </Grid>
+</Window>

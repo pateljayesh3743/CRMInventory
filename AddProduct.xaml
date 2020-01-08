@@ -1,0 +1,304 @@
+﻿<Window x:Class="CRMInventory.AddProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRMInventory.ViewModel"
+        
+        mc:Ignorable="d"
+        Title="AddProduct" Height="500" Width="820" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Window.DataContext >
+        <local:ProductViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel>
+                            <Border BorderBrush="red" BorderThickness="1">
+                                <AdornedElementPlaceholder/>
+                            </Border>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True" >
+                    <Setter Property="ToolTip" 
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Width="800" Height="490" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="50" />
+            <RowDefinition Height="440"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black"  Background="LightSkyBlue" BorderThickness="1,1,1,0">
+            <TextBlock FontSize="16" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Foreground="Black"  
+                Text="Product Creation" Height="20" VerticalAlignment="Center" TextAlignment="Center" />
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="1" Grid.Column="0" Background="AliceBlue">
+            <Grid Width="800" Height="430">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="400"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="430" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="250"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="70" />
+                    </Grid.RowDefinitions>
+
+                    <TextBox   x:Name="ProductId" Visibility="Hidden" />
+                    <Label Grid.Row="0" Grid.Column="0" Content="Item Name :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="0" Grid.Column="1"  x:Name="ProductName" Height="25" Margin="3,3,10,3"
+                         Text="{Binding ProductName,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="ProductName_KeyDown"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Category :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="1" Grid.Column="1"  x:Name="Category" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding Category,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="Category_KeyDown"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Item Group :" FontWeight="Bold"/>
+                    <!--<Grid Grid.Row="2" Grid.Column="1">
+                        <TextBox   x:Name="txtAuto"  PreviewKeyDown="txtAuto_KeyDown"  />
+                        <ListBox x:Name="lblSuggestion" 
+             Visibility="Collapsed" KeyDown="lblSuggestion_KeyDown"  SelectionChanged="lblSuggestion_SelectionChanged"/>
+
+                    </Grid>-->
+                    <ComboBox Grid.Row="2" Grid.Column="1"  x:Name="ItemGroup"
+                              ItemsSource="{Binding itemGroupCollection,ValidatesOnExceptions=true, 
+                        UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="ItemGroupName" SelectedValuePath="ItemGroupId" Width="237"
+                              Height="27" KeyDown="ItemGroup_KeyDown" Margin="3,3,10,3" 
+                              IsSynchronizedWithCurrentItem="True" IsEditable="True">
+                        <ComboBox.Style>
+                            <Style>
+                                <EventSetter Event="TextBox.TextChanged" Handler="TextBox_TextChanged" />
+                            </Style>
+                        </ComboBox.Style>
+                    </ComboBox>
+
+                    <Label Grid.Row="3" Grid.Column="0" Content="TaxType :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="3" Grid.Column="1"  x:Name="TaxType" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding TaxType,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="TaxType_KeyDown"/>
+
+                    <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="110"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="35" />
+                            <RowDefinition  Height="35" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="Unit :" FontWeight="Bold"/>
+                        <!--<TextBox Grid.Row="0" Grid.Column="1"  x:Name="Unit" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding Unit,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" />-->
+                        <ComboBox Grid.Row="0" Grid.Column="1"  x:Name="Unit" ItemsSource="{Binding unitCollection,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="UnitName" SelectedValuePath="UnitId" Width="120" Height="27" KeyDown="Unit_KeyDown"/>
+
+                        <Label Grid.Row="0" Grid.Column="2" Content="Alternet Unit :" FontWeight="Bold"/>
+                        <!--<TextBox Grid.Row="0" Grid.Column="3"  x:Name="AlternetUnit" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding AlternetUnit,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"/>-->
+                        <ComboBox Grid.Row="0" Grid.Column="3"  x:Name="AlternetUnit" ItemsSource="{Binding unitCollection,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="UnitName" SelectedValuePath="UnitId" Width="100" Height="27" KeyDown="AlternetUnit_KeyDown"/>
+
+                        <Label Grid.Row="1" Grid.Column="0" Content="MRP :" FontWeight="Bold"/>
+                        <TextBox Grid.Row="1" Grid.Column="1"  x:Name="MRP" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding MRP,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="MRP_KeyDown"/>
+
+                        <Label Grid.Row="1" Grid.Column="2" Content="Rate On :" FontWeight="Bold"/>
+                        <TextBox Grid.Row="1" Grid.Column="3"  x:Name="RateOn" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding RateOn,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="RateOn_KeyDown"/>
+
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="280" />
+                        <RowDefinition  Height="Auto" />
+                    </Grid.RowDefinitions>
+                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0"  Margin="10,0,10,0">
+                    <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="175"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="75"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35" />
+                        <RowDefinition  Height="35" />
+                    </Grid.RowDefinitions>
+                        <TextBlock Text="Expenses on Item" FontWeight="Bold" FontSize="14" TextAlignment="Center" Foreground="Black" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"></TextBlock>
+                        
+                    <Label Grid.Row="1" Grid.Column="0" Content="Adhat :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="1" Grid.Column="1"  x:Name="Adhat" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding Adhat,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="Adhat_KeyDown"/>
+
+                    <Label Grid.Row="1" Grid.Column="2" Content="Per :" FontWeight="Bold"/>
+                    <!--<TextBox Grid.Row="1" Grid.Column="3"  x:Name="AdhatPer" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding AdhatPer,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"/>-->
+                            <ComboBox Grid.Row="1" Grid.Column="3"  x:Name="AdhatPer" ItemsSource="{Binding unitCollection,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="UnitName" SelectedValuePath="UnitId" Width="70" Height="27" KeyDown="AdhatPer_KeyDown"/>
+
+                            <Label Grid.Row="2" Grid.Column="0" Content="Taulai :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="2" Grid.Column="1"  x:Name="Taulai" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding Taulai,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="Taulai_KeyDown"/>
+
+                    <Label Grid.Row="2" Grid.Column="2" Content="Per :" FontWeight="Bold"/>
+                    <!--<TextBox Grid.Row="2" Grid.Column="3"  x:Name="TaulaiPer" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding TaulaiPer,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"/>-->
+                            <ComboBox Grid.Row="2" Grid.Column="3"  x:Name="TaulaiPer" ItemsSource="{Binding unitCollection,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="UnitName" SelectedValuePath="UnitId" Width="70" Height="27" KeyDown="TaulaiPer_KeyDown"/>
+
+                            <Label Grid.Row="3" Grid.Column="0" Content="Majoori :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="3" Grid.Column="1"  x:Name="Majoori" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding Majoori,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="Majoori_KeyDown"/>
+
+                    <Label Grid.Row="3" Grid.Column="2" Content="Per :" FontWeight="Bold"/>
+                    <!--<TextBox Grid.Row="3" Grid.Column="3"  x:Name="MajooriPer" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding MajooriPer,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"/>-->
+                            <ComboBox Grid.Row="3" Grid.Column="3"  x:Name="MajooriPer" ItemsSource="{Binding unitCollection,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="UnitName" SelectedValuePath="UnitId" Width="70" Height="27" KeyDown="MajooriPer_KeyDown"/>
+
+                            <Label Grid.Row="4" Grid.Column="0" Content="Packing :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="4" Grid.Column="1"  x:Name="Packing" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding Packing,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="Packing_KeyDown"/>
+
+                    <Label Grid.Row="4" Grid.Column="2" Content="Per :" FontWeight="Bold"/>
+                    <!--<TextBox Grid.Row="4" Grid.Column="3"  x:Name="PackingPer" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding PackingPer,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"/>-->
+                            <ComboBox Grid.Row="4" Grid.Column="3"  x:Name="PackingPer" ItemsSource="{Binding unitCollection,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="UnitName" SelectedValuePath="UnitId" Width="70" Height="27" KeyDown="PackingPer_KeyDown"/>
+
+                            <Label Grid.Row="5" Grid.Column="0" Content="Mundi Sulk :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="5" Grid.Column="1"  x:Name="MundiSulk" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding MundiSulk,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="MundiSulk_KeyDown"/>
+
+                    <Label Grid.Row="5" Grid.Column="2" Content="Per :" FontWeight="Bold"/>
+                    <!--<TextBox Grid.Row="5" Grid.Column="3"  x:Name="MundiSulkPer" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding MundiSulkPer,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"/>-->
+                            <ComboBox Grid.Row="5" Grid.Column="3"  x:Name="MundiSulkPer" ItemsSource="{Binding unitCollection,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="UnitName" SelectedValuePath="UnitId" Width="70" Height="27" KeyDown="MundiSulkPer_KeyDown"/>
+
+                            <Label Grid.Row="6" Grid.Column="0" Content="Vikash Sesh :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="6" Grid.Column="1"  x:Name="VikashSesh" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding VikashSesh,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="VikashSesh_KeyDown"/>
+
+                    <Label Grid.Row="6" Grid.Column="2" Content="Per :" FontWeight="Bold"/>
+                    <!--<TextBox Grid.Row="6" Grid.Column="3"  x:Name="VikashSeshPer" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding VikashSeshPer,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"/>-->
+                            <ComboBox Grid.Row="6" Grid.Column="3"  x:Name="VikashSeshPer" ItemsSource="{Binding unitCollection,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="UnitName" SelectedValuePath="UnitId" Width="70" Height="27" KeyDown="VikashSeshPer_KeyDown"/>
+
+                            <Label Grid.Row="7" Grid.Column="0" Content="Packing Less :" FontWeight="Bold"/>
+                    <TextBox Grid.Row="7" Grid.Column="1"  x:Name="PackingLess" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding PackingLess,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="PackingLess_KeyDown"/>
+
+                    <Label Grid.Row="7" Grid.Column="2" Content="Per :" FontWeight="Bold"/>
+                    <!--<TextBox Grid.Row="7" Grid.Column="3"  x:Name="PackingLessPer" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding PackingLessPer,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"/>-->
+                            <ComboBox Grid.Row="7" Grid.Column="3"  x:Name="PackingLessPer" ItemsSource="{Binding unitCollection,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}"    
+                         DisplayMemberPath="UnitName" SelectedValuePath="UnitId" Width="70" Height="27" KeyDown="PackingLessPer_KeyDown"/>
+
+                        </Grid>
+                </Border>
+                    <Grid Grid.Row="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="35" />
+                            <RowDefinition  Height="35" />
+                            <RowDefinition  Height="35" />
+                            <RowDefinition  Height="35" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="100" />
+                            <ColumnDefinition  Width="100" />
+                            <ColumnDefinition  Width="100" />
+                            <ColumnDefinition  Width="100" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="Sale Rate On :" FontWeight="Bold"/>
+                        <TextBox Grid.Row="0" Grid.Column="1"  x:Name="SaleRateOn" Height="25" Margin="3,3,10,3"
+                         Text="{Binding SaleRateOn,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="SaleRateOn_KeyDown"/>
+
+                        <Label Grid.Row="0" Grid.Column="2" Content="Rate % :" FontWeight="Bold"/>
+                        <TextBox Grid.Row="0" Grid.Column="3"  x:Name="Rate" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding Rate,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="Rate_KeyDown"/>
+
+                        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition  Height="35" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  Width="80" />
+                                <ColumnDefinition  Width="60" />
+                                <ColumnDefinition  Width="80" />
+                                <ColumnDefinition  Width="50" />
+                                <ColumnDefinition  Width="80" />
+                                <ColumnDefinition  Width="50" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label Grid.Row="0" Grid.Column="0" Content="Dis.%(Consumer) :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="0" Grid.Column="1"  x:Name="DisConsumer" Height="25" Margin="3,3,10,3"
+                         Text="{Binding DisConsumer,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="DisConsumer_KeyDown"/>
+
+                            <Label Grid.Row="0" Grid.Column="2" Content="Dis.%(Other) :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="0" Grid.Column="3"  x:Name="DisOther" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding DisOther,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="DisOther_KeyDown"/>
+
+                            <Label Grid.Row="0" Grid.Column="4" Content="Dis. on Qty :" FontWeight="Bold"/>
+                            <TextBox Grid.Row="0" Grid.Column="5"  x:Name="DisOnQty" Height="25" Margin="3,3,10,3"
+                         Text="{Binding DisOnQty,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="DisOnQty_KeyDown"/>
+                        </Grid>
+                        
+                        <Label Grid.Row="2" Grid.Column="0" Content="Brokerage :" FontWeight="Bold"/>
+                        <TextBox Grid.Row="2" Grid.Column="1"  x:Name="Brokerge" Height="25" Margin="3,3,10,3"
+                         Text="{Binding Brokerge,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="Brokerge_KeyDown"/>
+
+                        <Label Grid.Row="2" Grid.Column="2" Content="Per :" FontWeight="Bold"/>
+                        <TextBox Grid.Row="2" Grid.Column="3"  x:Name="BrokergePer" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding BrokergePer,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="BrokergePer_KeyDown"/>
+
+                        <Label Grid.Row="3" Grid.Column="0" Content="Min Qty :" FontWeight="Bold"/>
+                        <TextBox Grid.Row="3" Grid.Column="1"  x:Name="MinQty" Height="25" Margin="3,3,10,3"
+                         Text="{Binding MinQty,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="MinQty_KeyDown"/>
+
+                        <Label Grid.Row="3" Grid.Column="2" Content="Order Qty :" FontWeight="Bold"/>
+                        <TextBox Grid.Row="3" Grid.Column="3"  x:Name="OrderQty" Height="25" Margin="3,3,10,3" 
+                         Text="{Binding OrderQty,ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" KeyDown="OrderQty_KeyDown"/>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

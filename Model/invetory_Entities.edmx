@@ -1,0 +1,939 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="invetoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="company_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="finanacial_year" Type="datetime" />
+          <Property Name="address" Type="varchar" MaxLength="1000" />
+          <Property Name="pin_no" Type="varchar" MaxLength="10" />
+          <Property Name="created_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="godown_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="1000" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="modified_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ledger_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="under_id" Type="int" />
+          <Property Name="billing_style" Type="varchar" MaxLength="50" />
+          <Property Name="opening_balance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="credit_debit_type" Type="int" />
+          <Property Name="print_name" Type="varchar" MaxLength="100" />
+          <Property Name="owner_name" Type="varchar" MaxLength="100" />
+          <Property Name="address" Type="varchar" MaxLength="1000" />
+          <Property Name="state" Type="int" />
+          <Property Name="pin_code" Type="varchar" MaxLength="10" />
+          <Property Name="mobile" Type="varchar" MaxLength="10" />
+          <Property Name="aadhar_no" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="area" Type="varchar" MaxLength="50" />
+          <Property Name="agent" Type="int" />
+          <Property Name="interest" Type="bit" />
+          <Property Name="credit_priod" Type="int" />
+          <Property Name="less_priod" Type="int" />
+          <Property Name="interest_rate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="company_id" Type="int" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="modified_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="product_expenses_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="adhat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="adhat_unit_id" Type="int" />
+          <Property Name="taulai" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="taulai_unit_id" Type="int" />
+          <Property Name="majoori" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="majoori_unit_id" Type="int" />
+          <Property Name="packing" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="packing_unit_id" Type="int" />
+          <Property Name="mandi_sulk" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="mandi_sulk_unit_id" Type="int" />
+          <Property Name="vikash_sesh" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="vikash_sesh_unit_id" Type="int" />
+          <Property Name="packing_less" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="packing_less_unit_id" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="modified_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="product_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product" Type="varchar" MaxLength="50" />
+          <Property Name="category_id" Type="int" />
+          <Property Name="item_group_id" Type="int" />
+          <Property Name="company_id" Type="int" />
+          <Property Name="unit_id" Type="int" />
+          <Property Name="alternat_unit_id" Type="int" />
+          <Property Name="mrp" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="rate_on" Type="int" />
+          <Property Name="tax_type" Type="int" />
+          <Property Name="sale_rate_on" Type="int" />
+          <Property Name="rate_persantage" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="discount_consumer" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="discount_other" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="discount_on_qty" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="brokerage" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="min_qty" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="order_qty" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="status" Type="int" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="modified_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="purchase_details">
+          <Key>
+            <PropertyRef Name="purchase_details" />
+          </Key>
+          <Property Name="purchase_details" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="purchase_id" Type="int" />
+          <Property Name="sr_no" Type="int" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="alternate_qty" Type="varchar" MaxLength="50" />
+          <Property Name="gross_weight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="less" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="net_weight" Type="varchar" MaxLength="50" />
+          <Property Name="rate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="per" Type="varchar" MaxLength="50" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="company_id" Type="int" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="purchase_expenses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="purchase_id" Type="int" />
+          <Property Name="adhat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="taulai" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="majoori" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="packing" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="mandi_sulk" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="vikash_sesh" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="other" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="status" Type="int" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="modified_on" Type="datetime" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="modified_by" Type="int" />
+          <Property Name="company_id" Type="int" />
+        </EntityType>
+        <EntityType Name="purchase_master">
+          <Key>
+            <PropertyRef Name="purchase_id" />
+          </Key>
+          <Property Name="purchase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serial_no" Type="int" />
+          <Property Name="book_no" Type="int" />
+          <Property Name="purchase_date" Type="datetime" />
+          <Property Name="party_name_id" Type="int" />
+          <Property Name="supplier_invoice_no" Type="int" />
+          <Property Name="purchase_date1" Type="datetime" />
+          <Property Name="gross_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="paking_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dis_persantage" Type="float" />
+          <Property Name="dis_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="other_charges" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="round_off" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="net_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="company_id" Type="int" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="sales_details">
+          <Key>
+            <PropertyRef Name="sales_details" />
+          </Key>
+          <Property Name="sales_details" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sales_id" Type="int" />
+          <Property Name="sr_no" Type="int" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="alternate_qty" Type="varchar" MaxLength="50" />
+          <Property Name="gross_weight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="less" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="net_weight" Type="varchar" MaxLength="50" />
+          <Property Name="rate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="per" Type="varchar" MaxLength="50" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="company_id" Type="int" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="sales_expenses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sales_id" Type="int" />
+          <Property Name="adhat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="taulai" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="majoori" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="packing" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="mandi_sulk" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="vikash_sesh" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="other" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="status" Type="int" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="modified_on" Type="datetime" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="modified_by" Type="int" />
+          <Property Name="company_id" Type="int" />
+        </EntityType>
+        <EntityType Name="sales_master">
+          <Key>
+            <PropertyRef Name="sales_id" />
+          </Key>
+          <Property Name="sales_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serial_no" Type="int" />
+          <Property Name="book_no" Type="int" />
+          <Property Name="sales_date" Type="datetime" />
+          <Property Name="party_name_id" Type="int" />
+          <Property Name="supplier_invoice_no" Type="int" />
+          <Property Name="sales_date1" Type="datetime" />
+          <Property Name="gross_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="paking_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dis_persantage" Type="float" />
+          <Property Name="dis_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="other_charges" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="round_off" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="net_amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="company_id" Type="int" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'invetory.dbo.stock_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="stock_detail">
+          <Key>
+            <PropertyRef Name="stock_detail_id" />
+          </Key>
+          <Property Name="stock_detail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="company_id" Type="int" />
+          <Property Name="transaction_type" Type="int" />
+        </EntityType>
+        <EntityType Name="stock_group_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="modified_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="under_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="company_id" Type="int" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="modified_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="unit_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="code" Type="varchar" MaxLength="50" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="modified_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="user_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="modified_on" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="invetoryModelStoreContainer">
+          <EntitySet Name="company_master" EntityType="Self.company_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="godown_master" EntityType="Self.godown_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ledger_master" EntityType="Self.ledger_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product_expenses_master" EntityType="Self.product_expenses_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product_master" EntityType="Self.product_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="purchase_details" EntityType="Self.purchase_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="purchase_expenses" EntityType="Self.purchase_expenses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="purchase_master" EntityType="Self.purchase_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sales_details" EntityType="Self.sales_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sales_expenses" EntityType="Self.sales_expenses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sales_master" EntityType="Self.sales_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stock_group_master" EntityType="Self.stock_group_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="under_master" EntityType="Self.under_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="unit_master" EntityType="Self.unit_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_master" EntityType="Self.user_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stock_detail" EntityType="Self.stock_detail" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [stock_detail].[stock_detail_id] AS [stock_detail_id], 
+    [stock_detail].[product_id] AS [product_id], 
+    [stock_detail].[price] AS [price], 
+    [stock_detail].[quantity] AS [quantity], 
+    [stock_detail].[created_date] AS [created_date], 
+    [stock_detail].[company_id] AS [company_id], 
+    [stock_detail].[transaction_type] AS [transaction_type]
+    FROM [dbo].[stock_detail] AS [stock_detail]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="invetoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="invetoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="company_master" EntityType="invetoryModel.company_master" />
+          <EntitySet Name="godown_master" EntityType="invetoryModel.godown_master" />
+          <EntitySet Name="ledger_master" EntityType="invetoryModel.ledger_master" />
+          <EntitySet Name="product_expenses_master" EntityType="invetoryModel.product_expenses_master" />
+          <EntitySet Name="product_master" EntityType="invetoryModel.product_master" />
+          <EntitySet Name="purchase_details" EntityType="invetoryModel.purchase_details" />
+          <EntitySet Name="purchase_expenses" EntityType="invetoryModel.purchase_expenses" />
+          <EntitySet Name="purchase_master" EntityType="invetoryModel.purchase_master" />
+          <EntitySet Name="stock_group_master" EntityType="invetoryModel.stock_group_master" />
+          <EntitySet Name="under_master" EntityType="invetoryModel.under_master" />
+          <EntitySet Name="unit_master" EntityType="invetoryModel.unit_master" />
+          <EntitySet Name="user_master" EntityType="invetoryModel.user_master" />
+          <EntitySet Name="stock_detail" EntityType="invetoryModel.stock_detail" />
+          <EntitySet Name="sales_details" EntityType="invetoryModel.sales_details" />
+          <EntitySet Name="sales_expenses" EntityType="invetoryModel.sales_expenses" />
+          <EntitySet Name="sales_master" EntityType="invetoryModel.sales_master" />
+        </EntityContainer>
+        <EntityType Name="company_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="finanacial_year" Type="DateTime" Precision="3" />
+          <Property Name="address" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="pin_no" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="godown_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="modified_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ledger_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="under_id" Type="Int32" />
+          <Property Name="billing_style" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="opening_balance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="credit_debit_type" Type="Int32" />
+          <Property Name="print_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="owner_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="pin_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="aadhar_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agent" Type="Int32" />
+          <Property Name="interest" Type="Boolean" />
+          <Property Name="credit_priod" Type="Int32" />
+          <Property Name="less_priod" Type="Int32" />
+          <Property Name="interest_rate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_id" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="modified_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="product_expenses_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="adhat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="adhat_unit_id" Type="Int32" />
+          <Property Name="taulai" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="taulai_unit_id" Type="Int32" />
+          <Property Name="majoori" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="majoori_unit_id" Type="Int32" />
+          <Property Name="packing" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="packing_unit_id" Type="Int32" />
+          <Property Name="mandi_sulk" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="mandi_sulk_unit_id" Type="Int32" />
+          <Property Name="vikash_sesh" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="vikash_sesh_unit_id" Type="Int32" />
+          <Property Name="packing_less" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="packing_less_unit_id" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="modified_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="product_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="category_id" Type="Int32" />
+          <Property Name="item_group_id" Type="Int32" />
+          <Property Name="company_id" Type="Int32" />
+          <Property Name="unit_id" Type="Int32" />
+          <Property Name="alternat_unit_id" Type="Int32" />
+          <Property Name="mrp" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="rate_on" Type="Int32" />
+          <Property Name="tax_type" Type="Int32" />
+          <Property Name="sale_rate_on" Type="Int32" />
+          <Property Name="rate_persantage" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="discount_consumer" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="discount_other" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="discount_on_qty" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="brokerage" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="min_qty" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="order_qty" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="modified_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="purchase_details">
+          <Key>
+            <PropertyRef Name="purchase_details1" />
+          </Key>
+          <Property Name="purchase_details1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="purchase_id" Type="Int32" />
+          <Property Name="sr_no" Type="Int32" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="alternate_qty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gross_weight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="less" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="net_weight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="per" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="company_id" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="purchase_expenses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="purchase_id" Type="Int32" />
+          <Property Name="adhat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="taulai" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="majoori" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="packing" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="mandi_sulk" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="vikash_sesh" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="other" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="modified_on" Type="DateTime" Precision="3" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="modified_by" Type="Int32" />
+          <Property Name="company_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="purchase_master">
+          <Key>
+            <PropertyRef Name="purchase_id" />
+          </Key>
+          <Property Name="purchase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serial_no" Type="Int32" />
+          <Property Name="book_no" Type="Int32" />
+          <Property Name="purchase_date" Type="DateTime" Precision="3" />
+          <Property Name="party_name_id" Type="Int32" />
+          <Property Name="supplier_invoice_no" Type="Int32" />
+          <Property Name="purchase_date1" Type="DateTime" Precision="3" />
+          <Property Name="gross_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="paking_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dis_persantage" Type="Double" />
+          <Property Name="dis_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="other_charges" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="round_off" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="net_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="company_id" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="stock_group_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="modified_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="under_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_id" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="modified_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="unit_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="modified_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="user_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="modified_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="stock_detail">
+          <Key>
+            <PropertyRef Name="stock_detail_id" />
+          </Key>
+          <Property Name="stock_detail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="company_id" Type="Int32" />
+          <Property Name="transaction_type" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sales_details">
+          <Key>
+            <PropertyRef Name="sales_details1" />
+          </Key>
+          <Property Name="sales_details1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sales_id" Type="Int32" />
+          <Property Name="sr_no" Type="Int32" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="alternate_qty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gross_weight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="less" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="net_weight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="per" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="company_id" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sales_expenses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sales_id" Type="Int32" />
+          <Property Name="adhat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="taulai" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="majoori" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="packing" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="mandi_sulk" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="vikash_sesh" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="other" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="modified_on" Type="DateTime" Precision="3" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="modified_by" Type="Int32" />
+          <Property Name="company_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sales_master">
+          <Key>
+            <PropertyRef Name="sales_id" />
+          </Key>
+          <Property Name="sales_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serial_no" Type="Int32" />
+          <Property Name="book_no" Type="Int32" />
+          <Property Name="sales_date" Type="DateTime" Precision="3" />
+          <Property Name="party_name_id" Type="Int32" />
+          <Property Name="supplier_invoice_no" Type="Int32" />
+          <Property Name="sales_date1" Type="DateTime" Precision="3" />
+          <Property Name="gross_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="paking_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dis_persantage" Type="Double" />
+          <Property Name="dis_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="other_charges" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="round_off" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="net_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="company_id" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="invetoryModelStoreContainer" CdmEntityContainer="invetoryEntities">
+          <EntitySetMapping Name="company_master">
+            <EntityTypeMapping TypeName="invetoryModel.company_master">
+              <MappingFragment StoreEntitySet="company_master">
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="pin_no" ColumnName="pin_no" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="finanacial_year" ColumnName="finanacial_year" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="godown_master">
+            <EntityTypeMapping TypeName="invetoryModel.godown_master">
+              <MappingFragment StoreEntitySet="godown_master">
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ledger_master">
+            <EntityTypeMapping TypeName="invetoryModel.ledger_master">
+              <MappingFragment StoreEntitySet="ledger_master">
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="interest_rate" ColumnName="interest_rate" />
+                <ScalarProperty Name="less_priod" ColumnName="less_priod" />
+                <ScalarProperty Name="credit_priod" ColumnName="credit_priod" />
+                <ScalarProperty Name="interest" ColumnName="interest" />
+                <ScalarProperty Name="agent" ColumnName="agent" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="aadhar_no" ColumnName="aadhar_no" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="pin_code" ColumnName="pin_code" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="owner_name" ColumnName="owner_name" />
+                <ScalarProperty Name="print_name" ColumnName="print_name" />
+                <ScalarProperty Name="credit_debit_type" ColumnName="credit_debit_type" />
+                <ScalarProperty Name="opening_balance" ColumnName="opening_balance" />
+                <ScalarProperty Name="billing_style" ColumnName="billing_style" />
+                <ScalarProperty Name="under_id" ColumnName="under_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_expenses_master">
+            <EntityTypeMapping TypeName="invetoryModel.product_expenses_master">
+              <MappingFragment StoreEntitySet="product_expenses_master">
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="packing_less_unit_id" ColumnName="packing_less_unit_id" />
+                <ScalarProperty Name="packing_less" ColumnName="packing_less" />
+                <ScalarProperty Name="vikash_sesh_unit_id" ColumnName="vikash_sesh_unit_id" />
+                <ScalarProperty Name="vikash_sesh" ColumnName="vikash_sesh" />
+                <ScalarProperty Name="mandi_sulk_unit_id" ColumnName="mandi_sulk_unit_id" />
+                <ScalarProperty Name="mandi_sulk" ColumnName="mandi_sulk" />
+                <ScalarProperty Name="packing_unit_id" ColumnName="packing_unit_id" />
+                <ScalarProperty Name="packing" ColumnName="packing" />
+                <ScalarProperty Name="majoori_unit_id" ColumnName="majoori_unit_id" />
+                <ScalarProperty Name="majoori" ColumnName="majoori" />
+                <ScalarProperty Name="taulai_unit_id" ColumnName="taulai_unit_id" />
+                <ScalarProperty Name="taulai" ColumnName="taulai" />
+                <ScalarProperty Name="adhat_unit_id" ColumnName="adhat_unit_id" />
+                <ScalarProperty Name="adhat" ColumnName="adhat" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_master">
+            <EntityTypeMapping TypeName="invetoryModel.product_master">
+              <MappingFragment StoreEntitySet="product_master">
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="order_qty" ColumnName="order_qty" />
+                <ScalarProperty Name="min_qty" ColumnName="min_qty" />
+                <ScalarProperty Name="brokerage" ColumnName="brokerage" />
+                <ScalarProperty Name="discount_on_qty" ColumnName="discount_on_qty" />
+                <ScalarProperty Name="discount_other" ColumnName="discount_other" />
+                <ScalarProperty Name="discount_consumer" ColumnName="discount_consumer" />
+                <ScalarProperty Name="rate_persantage" ColumnName="rate_persantage" />
+                <ScalarProperty Name="sale_rate_on" ColumnName="sale_rate_on" />
+                <ScalarProperty Name="tax_type" ColumnName="tax_type" />
+                <ScalarProperty Name="rate_on" ColumnName="rate_on" />
+                <ScalarProperty Name="mrp" ColumnName="mrp" />
+                <ScalarProperty Name="alternat_unit_id" ColumnName="alternat_unit_id" />
+                <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="item_group_id" ColumnName="item_group_id" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="product" ColumnName="product" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchase_details">
+            <EntityTypeMapping TypeName="invetoryModel.purchase_details">
+              <MappingFragment StoreEntitySet="purchase_details">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="per" ColumnName="per" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="net_weight" ColumnName="net_weight" />
+                <ScalarProperty Name="less" ColumnName="less" />
+                <ScalarProperty Name="gross_weight" ColumnName="gross_weight" />
+                <ScalarProperty Name="alternate_qty" ColumnName="alternate_qty" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="sr_no" ColumnName="sr_no" />
+                <ScalarProperty Name="purchase_id" ColumnName="purchase_id" />
+                <ScalarProperty Name="purchase_details1" ColumnName="purchase_details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchase_expenses">
+            <EntityTypeMapping TypeName="invetoryModel.purchase_expenses">
+              <MappingFragment StoreEntitySet="purchase_expenses">
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="other" ColumnName="other" />
+                <ScalarProperty Name="vikash_sesh" ColumnName="vikash_sesh" />
+                <ScalarProperty Name="mandi_sulk" ColumnName="mandi_sulk" />
+                <ScalarProperty Name="packing" ColumnName="packing" />
+                <ScalarProperty Name="majoori" ColumnName="majoori" />
+                <ScalarProperty Name="taulai" ColumnName="taulai" />
+                <ScalarProperty Name="adhat" ColumnName="adhat" />
+                <ScalarProperty Name="purchase_id" ColumnName="purchase_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchase_master">
+            <EntityTypeMapping TypeName="invetoryModel.purchase_master">
+              <MappingFragment StoreEntitySet="purchase_master">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="net_amount" ColumnName="net_amount" />
+                <ScalarProperty Name="round_off" ColumnName="round_off" />
+                <ScalarProperty Name="other_charges" ColumnName="other_charges" />
+                <ScalarProperty Name="dis_amount" ColumnName="dis_amount" />
+                <ScalarProperty Name="dis_persantage" ColumnName="dis_persantage" />
+                <ScalarProperty Name="paking_amount" ColumnName="paking_amount" />
+                <ScalarProperty Name="gross_amount" ColumnName="gross_amount" />
+                <ScalarProperty Name="purchase_date1" ColumnName="purchase_date1" />
+                <ScalarProperty Name="supplier_invoice_no" ColumnName="supplier_invoice_no" />
+                <ScalarProperty Name="party_name_id" ColumnName="party_name_id" />
+                <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+                <ScalarProperty Name="book_no" ColumnName="book_no" />
+                <ScalarProperty Name="serial_no" ColumnName="serial_no" />
+                <ScalarProperty Name="purchase_id" ColumnName="purchase_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock_group_master">
+            <EntityTypeMapping TypeName="invetoryModel.stock_group_master">
+              <MappingFragment StoreEntitySet="stock_group_master">
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="under_master">
+            <EntityTypeMapping TypeName="invetoryModel.under_master">
+              <MappingFragment StoreEntitySet="under_master">
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="unit_master">
+            <EntityTypeMapping TypeName="invetoryModel.unit_master">
+              <MappingFragment StoreEntitySet="unit_master">
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_master">
+            <EntityTypeMapping TypeName="invetoryModel.user_master">
+              <MappingFragment StoreEntitySet="user_master">
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock_detail">
+            <EntityTypeMapping TypeName="invetoryModel.stock_detail">
+              <MappingFragment StoreEntitySet="stock_detail">
+                <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="stock_detail_id" ColumnName="stock_detail_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales_details">
+            <EntityTypeMapping TypeName="invetoryModel.sales_details">
+              <MappingFragment StoreEntitySet="sales_details">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="per" ColumnName="per" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="net_weight" ColumnName="net_weight" />
+                <ScalarProperty Name="less" ColumnName="less" />
+                <ScalarProperty Name="gross_weight" ColumnName="gross_weight" />
+                <ScalarProperty Name="alternate_qty" ColumnName="alternate_qty" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="sr_no" ColumnName="sr_no" />
+                <ScalarProperty Name="sales_id" ColumnName="sales_id" />
+                <ScalarProperty Name="sales_details1" ColumnName="sales_details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales_expenses">
+            <EntityTypeMapping TypeName="invetoryModel.sales_expenses">
+              <MappingFragment StoreEntitySet="sales_expenses">
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="other" ColumnName="other" />
+                <ScalarProperty Name="vikash_sesh" ColumnName="vikash_sesh" />
+                <ScalarProperty Name="mandi_sulk" ColumnName="mandi_sulk" />
+                <ScalarProperty Name="packing" ColumnName="packing" />
+                <ScalarProperty Name="majoori" ColumnName="majoori" />
+                <ScalarProperty Name="taulai" ColumnName="taulai" />
+                <ScalarProperty Name="adhat" ColumnName="adhat" />
+                <ScalarProperty Name="sales_id" ColumnName="sales_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales_master">
+            <EntityTypeMapping TypeName="invetoryModel.sales_master">
+              <MappingFragment StoreEntitySet="sales_master">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="net_amount" ColumnName="net_amount" />
+                <ScalarProperty Name="round_off" ColumnName="round_off" />
+                <ScalarProperty Name="other_charges" ColumnName="other_charges" />
+                <ScalarProperty Name="dis_amount" ColumnName="dis_amount" />
+                <ScalarProperty Name="dis_persantage" ColumnName="dis_persantage" />
+                <ScalarProperty Name="paking_amount" ColumnName="paking_amount" />
+                <ScalarProperty Name="gross_amount" ColumnName="gross_amount" />
+                <ScalarProperty Name="sales_date1" ColumnName="sales_date1" />
+                <ScalarProperty Name="supplier_invoice_no" ColumnName="supplier_invoice_no" />
+                <ScalarProperty Name="party_name_id" ColumnName="party_name_id" />
+                <ScalarProperty Name="sales_date" ColumnName="sales_date" />
+                <ScalarProperty Name="book_no" ColumnName="book_no" />
+                <ScalarProperty Name="serial_no" ColumnName="serial_no" />
+                <ScalarProperty Name="sales_id" ColumnName="sales_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
